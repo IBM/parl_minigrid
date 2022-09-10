@@ -1,0 +1,6 @@
+gym
+numpy
+torch
+tensorboard
+matplotlib
+-e ./libs/gym-minigrid

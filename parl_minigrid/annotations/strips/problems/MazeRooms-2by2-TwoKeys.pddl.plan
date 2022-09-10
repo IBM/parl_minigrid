@@ -1,0 +1,176 @@
+state:0
+(at k-purple-0 r-1-0)
+(locked d-purple-0-0-0-1)
+(unlocked d-yellow-0-0-1-0)
+(empty-hand)
+(locked d-yellow-1-0-1-1)
+(at k-yellow-1 r-0-1)
+(at-agent r-0-0)
+
+action:0
+(move-room d-yellow-0-0-1-0 r-0-0 r-1-0)
+  PRE: (unlocked d-yellow-0-0-1-0)
+  PRE: (at-agent r-0-0)
+  ADD: (at-agent r-1-0)
+  DEL: (at-agent r-0-0)
+
+state:1
+(at k-yellow-1 r-0-1)
+(locked d-yellow-1-0-1-1)
+(locked d-purple-0-0-0-1)
+(empty-hand)
+(at k-purple-0 r-1-0)
+(at-agent r-1-0)
+(unlocked d-yellow-0-0-1-0)
+
+action:1
+(pickup k-purple-0 r-1-0)
+  PRE: (at k-purple-0 r-1-0)
+  PRE: (at-agent r-1-0)
+  PRE: (empty-hand)
+  ADD: (carry k-purple-0)
+  DEL: (at k-purple-0 r-1-0)
+  DEL: (empty-hand)
+
+state:2
+(at k-yellow-1 r-0-1)
+(locked d-purple-0-0-0-1)
+(locked d-yellow-1-0-1-1)
+(at-agent r-1-0)
+(carry k-purple-0)
+(unlocked d-yellow-0-0-1-0)
+
+action:2
+(move-room d-yellow-0-0-1-0 r-1-0 r-0-0)
+  PRE: (at-agent r-1-0)
+  PRE: (unlocked d-yellow-0-0-1-0)
+  ADD: (at-agent r-0-0)
+  DEL: (at-agent r-1-0)
+
+state:3
+(at k-yellow-1 r-0-1)
+(locked d-yellow-1-0-1-1)
+(locked d-purple-0-0-0-1)
+(carry k-purple-0)
+(unlocked d-yellow-0-0-1-0)
+(at-agent r-0-0)
+
+action:3
+(unlock k-purple-0 d-purple-0-0-0-1 r-0-0 r-0-1)
+  PRE: (locked d-purple-0-0-0-1)
+  PRE: (carry k-purple-0)
+  PRE: (at-agent r-0-0)
+  ADD: (unlocked d-purple-0-0-0-1)
+  DEL: (locked d-purple-0-0-0-1)
+
+state:4
+(unlocked d-purple-0-0-0-1)
+(locked d-yellow-1-0-1-1)
+(at k-yellow-1 r-0-1)
+(carry k-purple-0)
+(unlocked d-yellow-0-0-1-0)
+(at-agent r-0-0)
+
+action:4
+(drop k-purple-0 r-0-0)
+  PRE: (carry k-purple-0)
+  PRE: (at-agent r-0-0)
+  ADD: (at k-purple-0 r-0-0)
+  ADD: (empty-hand)
+  DEL: (carry k-purple-0)
+
+state:5
+(at k-purple-0 r-0-0)
+(unlocked d-purple-0-0-0-1)
+(empty-hand)
+(locked d-yellow-1-0-1-1)
+(at k-yellow-1 r-0-1)
+(unlocked d-yellow-0-0-1-0)
+(at-agent r-0-0)
+
+action:5
+(move-room d-purple-0-0-0-1 r-0-0 r-0-1)
+  PRE: (unlocked d-purple-0-0-0-1)
+  PRE: (at-agent r-0-0)
+  ADD: (at-agent r-0-1)
+  DEL: (at-agent r-0-0)
+
+state:6
+(at k-yellow-1 r-0-1)
+(locked d-yellow-1-0-1-1)
+(unlocked d-purple-0-0-0-1)
+(empty-hand)
+(at k-purple-0 r-0-0)
+(at-agent r-0-1)
+(unlocked d-yellow-0-0-1-0)
+
+action:6
+(pickup k-yellow-1 r-0-1)
+  PRE: (at k-yellow-1 r-0-1)
+  PRE: (at-agent r-0-1)
+  PRE: (empty-hand)
+  ADD: (carry k-yellow-1)
+  DEL: (at k-yellow-1 r-0-1)
+  DEL: (empty-hand)
+
+state:7
+(carry k-yellow-1)
+(unlocked d-purple-0-0-0-1)
+(locked d-yellow-1-0-1-1)
+(at k-purple-0 r-0-0)
+(at-agent r-0-1)
+(unlocked d-yellow-0-0-1-0)
+
+action:7
+(move-room d-purple-0-0-0-1 r-0-1 r-0-0)
+  PRE: (at-agent r-0-1)
+  PRE: (unlocked d-purple-0-0-0-1)
+  ADD: (at-agent r-0-0)
+  DEL: (at-agent r-0-1)
+
+state:8
+(carry k-yellow-1)
+(unlocked d-purple-0-0-0-1)
+(locked d-yellow-1-0-1-1)
+(at k-purple-0 r-0-0)
+(unlocked d-yellow-0-0-1-0)
+(at-agent r-0-0)
+
+action:8
+(move-room d-yellow-0-0-1-0 r-0-0 r-1-0)
+  PRE: (unlocked d-yellow-0-0-1-0)
+  PRE: (at-agent r-0-0)
+  ADD: (at-agent r-1-0)
+  DEL: (at-agent r-0-0)
+
+state:9
+(carry k-yellow-1)
+(unlocked d-purple-0-0-0-1)
+(locked d-yellow-1-0-1-1)
+(at k-purple-0 r-0-0)
+(at-agent r-1-0)
+(unlocked d-yellow-0-0-1-0)
+
+action:9
+(unlock k-yellow-1 d-yellow-1-0-1-1 r-1-0 r-1-1)
+  PRE: (at-agent r-1-0)
+  PRE: (carry k-yellow-1)
+  PRE: (locked d-yellow-1-0-1-1)
+  ADD: (unlocked d-yellow-1-0-1-1)
+  DEL: (locked d-yellow-1-0-1-1)
+
+state:10
+(unlocked d-yellow-1-0-1-1)
+(carry k-yellow-1)
+(unlocked d-purple-0-0-0-1)
+(at k-purple-0 r-0-0)
+(at-agent r-1-0)
+(unlocked d-yellow-0-0-1-0)
+
+action:10
+(move-room d-yellow-1-0-1-1 r-1-0 r-1-1)
+  PRE: (at-agent r-1-0)
+  PRE: (unlocked d-yellow-1-0-1-1)
+  ADD: (at-agent r-1-1)
+  DEL: (at-agent r-1-0)
+

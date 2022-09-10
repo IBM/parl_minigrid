@@ -1,0 +1,1 @@
+import parl_minigrid.envs

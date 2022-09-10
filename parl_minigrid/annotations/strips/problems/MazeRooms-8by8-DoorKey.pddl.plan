@@ -1,0 +1,40 @@
+state:0
+(locked d-yellow-0-0-1-0)
+(at-agent r-0-0)
+(empty-hand)
+(at k-yellow-0 r-0-0)
+
+action:0
+(pickup k-yellow-0 r-0-0)
+  PRE: (at k-yellow-0 r-0-0)
+  PRE: (empty-hand)
+  PRE: (at-agent r-0-0)
+  ADD: (carry k-yellow-0)
+  DEL: (at k-yellow-0 r-0-0)
+  DEL: (empty-hand)
+
+state:1
+(carry k-yellow-0)
+(locked d-yellow-0-0-1-0)
+(at-agent r-0-0)
+
+action:1
+(unlock k-yellow-0 d-yellow-0-0-1-0 r-0-0 r-1-0)
+  PRE: (carry k-yellow-0)
+  PRE: (locked d-yellow-0-0-1-0)
+  PRE: (at-agent r-0-0)
+  ADD: (unlocked d-yellow-0-0-1-0)
+  DEL: (locked d-yellow-0-0-1-0)
+
+state:2
+(carry k-yellow-0)
+(unlocked d-yellow-0-0-1-0)
+(at-agent r-0-0)
+
+action:2
+(move-room d-yellow-0-0-1-0 r-0-0 r-1-0)
+  PRE: (unlocked d-yellow-0-0-1-0)
+  PRE: (at-agent r-0-0)
+  ADD: (at-agent r-1-0)
+  DEL: (at-agent r-0-0)
+

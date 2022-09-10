@@ -1,0 +1,88 @@
+state:0
+(unlocked d-yellow-1-2-2-2)
+(unlocked d-yellow-1-1-1-2)
+(unlocked d-yellow-2-0-2-1)
+(unlocked d-yellow-1-0-2-0)
+(unlocked d-yellow-0-0-0-1)
+(unlocked d-yellow-0-1-1-1)
+(unlocked d-yellow-0-0-1-0)
+(unlocked d-yellow-2-1-2-2)
+(unlocked d-yellow-1-0-1-1)
+(unlocked d-yellow-0-1-0-2)
+(unlocked d-yellow-0-2-1-2)
+(unlocked d-yellow-1-1-2-1)
+(at-agent r-0-0)
+
+action:0
+(move-room d-yellow-0-0-1-0 r-0-0 r-1-0)
+  PRE: (unlocked d-yellow-0-0-1-0)
+  PRE: (at-agent r-0-0)
+  ADD: (at-agent r-1-0)
+  DEL: (at-agent r-0-0)
+
+state:1
+(unlocked d-yellow-1-2-2-2)
+(unlocked d-yellow-1-1-1-2)
+(unlocked d-yellow-2-0-2-1)
+(unlocked d-yellow-1-0-2-0)
+(unlocked d-yellow-0-0-0-1)
+(unlocked d-yellow-0-1-1-1)
+(at-agent r-1-0)
+(unlocked d-yellow-0-0-1-0)
+(unlocked d-yellow-2-1-2-2)
+(unlocked d-yellow-1-0-1-1)
+(unlocked d-yellow-0-1-0-2)
+(unlocked d-yellow-0-2-1-2)
+(unlocked d-yellow-1-1-2-1)
+
+action:1
+(move-room d-yellow-1-0-2-0 r-1-0 r-2-0)
+  PRE: (at-agent r-1-0)
+  PRE: (unlocked d-yellow-1-0-2-0)
+  ADD: (at-agent r-2-0)
+  DEL: (at-agent r-1-0)
+
+state:2
+(unlocked d-yellow-1-2-2-2)
+(unlocked d-yellow-1-1-1-2)
+(unlocked d-yellow-2-0-2-1)
+(unlocked d-yellow-1-0-2-0)
+(unlocked d-yellow-0-0-0-1)
+(unlocked d-yellow-0-1-1-1)
+(unlocked d-yellow-0-0-1-0)
+(unlocked d-yellow-2-1-2-2)
+(unlocked d-yellow-1-0-1-1)
+(unlocked d-yellow-0-1-0-2)
+(unlocked d-yellow-0-2-1-2)
+(at-agent r-2-0)
+(unlocked d-yellow-1-1-2-1)
+
+action:2
+(move-room d-yellow-2-0-2-1 r-2-0 r-2-1)
+  PRE: (unlocked d-yellow-2-0-2-1)
+  PRE: (at-agent r-2-0)
+  ADD: (at-agent r-2-1)
+  DEL: (at-agent r-2-0)
+
+state:3
+(unlocked d-yellow-1-2-2-2)
+(unlocked d-yellow-1-1-1-2)
+(unlocked d-yellow-2-0-2-1)
+(unlocked d-yellow-1-0-2-0)
+(unlocked d-yellow-0-0-0-1)
+(at-agent r-2-1)
+(unlocked d-yellow-0-1-1-1)
+(unlocked d-yellow-0-0-1-0)
+(unlocked d-yellow-2-1-2-2)
+(unlocked d-yellow-1-0-1-1)
+(unlocked d-yellow-0-1-0-2)
+(unlocked d-yellow-0-2-1-2)
+(unlocked d-yellow-1-1-2-1)
+
+action:3
+(move-room d-yellow-2-1-2-2 r-2-1 r-2-2)
+  PRE: (unlocked d-yellow-2-1-2-2)
+  PRE: (at-agent r-2-1)
+  ADD: (at-agent r-2-2)
+  DEL: (at-agent r-2-1)
+
