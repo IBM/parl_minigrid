@@ -4,14 +4,15 @@ Minigrid gym environments for Planning annotation Reinforcement Learning (PaRL)
 
 ## Install
 ```
-git clone --recurse-submodules parl_minigrid.git
+git clone git@github.com:IBM/parl_minigrid.git
+git submodule add https://github.com/maximecb/gym-minigrid.git libs/gym-minigrid
 conda create -n parl_minigrid python=3.7
 conda activate parl_minigrid
 pip install -r requirements.txt
 pip install -e .
 ```
-* gym-minigrid is a submodule
-* install `parl_annotaions` and `parl_agents` in the same conda environment
+* add gym-minigrid as a submodule
+* install `parl_annotaions` and `parl_agents` in the same conda environment for training parl agents
 
 ## Gym environments
 * `parl_minigrid.envs.maze_rooms` defines `MazeRooms` class
