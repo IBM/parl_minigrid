@@ -1,0 +1,80 @@
+state:0
+(unlocked d-yellow-0-0-0-1)
+(unlocked d-yellow-1-2-2-2)
+(unlocked d-yellow-1-1-2-1)
+(unlocked d-yellow-0-2-1-2)
+(unlocked d-yellow-0-0-1-0)
+(unlocked d-yellow-2-0-2-1)
+(unlocked d-yellow-0-1-1-1)
+(unlocked d-yellow-1-0-1-1)
+(at-agent r-0-0)
+(unlocked d-yellow-1-1-1-2)
+(unlocked d-yellow-1-0-2-0)
+
+action:0
+(move-room d-yellow-0-0-0-1 r-0-0 r-0-1)
+  PRE: (at-agent r-0-0)
+  PRE: (unlocked d-yellow-0-0-0-1)
+  ADD: (at-agent r-0-1)
+  DEL: (at-agent r-0-0)
+
+state:1
+(unlocked d-yellow-0-0-0-1)
+(unlocked d-yellow-1-2-2-2)
+(unlocked d-yellow-1-1-2-1)
+(at-agent r-0-1)
+(unlocked d-yellow-0-2-1-2)
+(unlocked d-yellow-0-0-1-0)
+(unlocked d-yellow-2-0-2-1)
+(unlocked d-yellow-0-1-1-1)
+(unlocked d-yellow-1-0-1-1)
+(unlocked d-yellow-1-1-1-2)
+(unlocked d-yellow-1-0-2-0)
+
+action:1
+(move-room d-yellow-0-1-1-1 r-0-1 r-1-1)
+  PRE: (at-agent r-0-1)
+  PRE: (unlocked d-yellow-0-1-1-1)
+  ADD: (at-agent r-1-1)
+  DEL: (at-agent r-0-1)
+
+state:2
+(unlocked d-yellow-0-0-0-1)
+(at-agent r-1-1)
+(unlocked d-yellow-1-2-2-2)
+(unlocked d-yellow-1-1-2-1)
+(unlocked d-yellow-0-2-1-2)
+(unlocked d-yellow-0-0-1-0)
+(unlocked d-yellow-2-0-2-1)
+(unlocked d-yellow-0-1-1-1)
+(unlocked d-yellow-1-0-1-1)
+(unlocked d-yellow-1-1-1-2)
+(unlocked d-yellow-1-0-2-0)
+
+action:2
+(move-room d-yellow-1-1-1-2 r-1-1 r-1-2)
+  PRE: (at-agent r-1-1)
+  PRE: (unlocked d-yellow-1-1-1-2)
+  ADD: (at-agent r-1-2)
+  DEL: (at-agent r-1-1)
+
+state:3
+(unlocked d-yellow-0-0-0-1)
+(unlocked d-yellow-1-2-2-2)
+(unlocked d-yellow-1-1-2-1)
+(unlocked d-yellow-0-2-1-2)
+(unlocked d-yellow-0-0-1-0)
+(unlocked d-yellow-2-0-2-1)
+(unlocked d-yellow-0-1-1-1)
+(unlocked d-yellow-1-0-1-1)
+(unlocked d-yellow-1-1-1-2)
+(unlocked d-yellow-1-0-2-0)
+(at-agent r-1-2)
+
+action:3
+(move-room d-yellow-1-2-2-2 r-1-2 r-2-2)
+  PRE: (unlocked d-yellow-1-2-2-2)
+  PRE: (at-agent r-1-2)
+  ADD: (at-agent r-2-2)
+  DEL: (at-agent r-1-2)
+

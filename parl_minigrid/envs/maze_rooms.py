@@ -1,6 +1,7 @@
 import random
 
 import gym
+from gym_minigrid.minigrid import Key
 from gym_minigrid.roomgrid import RoomGrid
 from gym_minigrid.minigrid import Goal
 from gym_minigrid.minigrid import (
@@ -50,9 +51,12 @@ class MazeRooms(RoomGrid):
         maze_layout=None,       # pass maze layout
         key_rooms=None,          # pass the location of the key
         key_colors=None,
+        key_states=None,        # 0 for permanant 1 for disposable unused
         locked_rooms_and_doors=None,       # [(room_i, room_j, 0, 'purple'), ]
+        multiple_init_rooms=None    # ((0,0), (1,0), (2,0)) for 3 rooms at the row 0
     ):
         self.init_room = init_room
+        self.multiple_init_rooms = multiple_init_rooms
         if goal_room is None:
             self.goal_room = (num_cols - 1, num_rows - 1)
         else:
@@ -62,6 +66,7 @@ class MazeRooms(RoomGrid):
         self.maze_layout = maze_layout      # passing None makes 1 by 1 RoomGrid
         self.key_rooms = key_rooms
         self.key_colors = key_colors
+        self.key_states = key_states
         self.locked_rooms_and_doors = locked_rooms_and_doors
         self.total_num_rooms = num_rows * num_cols
 
@@ -118,21 +123,21 @@ class MazeRooms(RoomGrid):
         self.num_train_seeds = num_train_seeds
         self.num_test_seeds = num_test_seeds
         self.default_seed = seed
+        print("{} env".format(str(self.__class__)))
+        print("train_mode:{}".format(train_mode))
         print("num_train_seeds:{}".format(num_train_seeds))
         print("num_test_seeds:{}".format(num_test_seeds))
 
-        # does this seed make reset behavior deterministic?
-        random_seed = self._get_train_test_seed(self.default_seed)
-        super().__init__(room_size, num_rows, num_cols, max_steps, random_seed, agent_view_size)
+        super().__init__(room_size, num_rows, num_cols, max_steps, self.default_seed, agent_view_size)
 
     def _get_train_test_seed(self, default_seed):
         if self.train_mode is None:
             random_seed = default_seed
         else:
             if self.train_mode:
-                random_seed = random.choice(range(self.num_train_seeds))        # 0 ~ 99 training seed
+                random_seed = random.choice(range(self.num_test_seeds, self.num_test_seeds + self.num_train_seeds))
             else:
-                random_seed = random.choice(range(self.num_train_seeds, self.num_train_seeds + self.num_test_seeds))  # 1000~1019 evaluation seed
+                random_seed = random.choice(range(self.num_test_seeds))
         return random_seed
 
     def reset(self):
@@ -163,8 +168,14 @@ class MazeRooms(RoomGrid):
         we should add doors (door position is determined in RoomGrid._gen_grid()), balls, and keys.
         """
 
-        # place agent at the room (0,0)
-        self.init_cell = self.place_agent(i=self.init_room[0], j=self.init_room[1], rand_dir=True)
+        if self.multiple_init_rooms is None:
+            # place agent at the room (0,0)
+            self.init_cell = self.place_agent(i=self.init_room[0], j=self.init_room[1], rand_dir=True)
+        else:
+            # place agent at one of the rooms
+            init_room_num = random.choice(range(len(self.multiple_init_rooms)))
+            self.init_cell = self.place_agent(i=self.multiple_init_rooms[init_room_num][0],
+                                              j=self.multiple_init_rooms[init_room_num][1], rand_dir=True)
 
         # add goal locations
         self.goal_cell = self.add_goal_tile(col=self.goal_room[0], row=self.goal_room[1])
@@ -273,6 +284,7 @@ class MazeRooms(RoomGrid):
             if self.key_rooms:
                 room_i, room_j = self.key_rooms[i]
             else:
+                # randomly assign a key to room except for the init/goal room
                 while True:
                     room_i, room_j = self.sample_room()
                     if (room_i, room_j) == self.goal_room or (room_i, room_j) == self.init_room:
@@ -286,7 +298,13 @@ class MazeRooms(RoomGrid):
                 key_color = self.key_colors[i]
             else:
                 key_color = self._rand_elem(MazeRooms.door_colors)
-            key, pos = self.add_object(room_i, room_j, kind='key', color=key_color)
+            if self.key_states:
+                key_state = self.key_states[i]
+            else:
+                key_state = 0
+            is_disposable = key_state != 0
+            is_used = key_state == 2
+            key, pos = self.place_in_room(room_i, room_j, Key(key_color, is_disposable, is_used))
             key_rooms.append((room_i, room_j))
             key_colors.append(key_color)
             self.keys.append(key)       # from this list we can access all information!; get obj-get pos-get room, etc

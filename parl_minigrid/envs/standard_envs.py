@@ -52,25 +52,22 @@ class DoorKey(MiniGridEnv):
         self.num_train_seeds = num_train_seeds
         self.num_test_seeds = num_test_seeds
         self.default_seed = seed
+        print("{} env".format(str(self.__class__)))
+        print("train_mode:{}".format(train_mode))
         print("num_train_seeds:{}".format(num_train_seeds))
         print("num_test_seeds:{}".format(num_test_seeds))
 
-        # does this seed make reset behavior deterministic?
-        random_seed = self._get_train_test_seed(self.default_seed)
-
         super().__init__(grid_size=size, max_steps=max_steps,
-                         see_through_walls=True, seed=random_seed)
-
-        self.seed(seed=random_seed)
+                         see_through_walls=True, seed=self.default_seed)
 
     def _get_train_test_seed(self, default_seed):
         if self.train_mode is None:
             random_seed = default_seed
         else:
             if self.train_mode:
-                random_seed = random.choice(range(self.num_train_seeds))        # 0 ~ 99 training seed
+                random_seed = random.choice(range(self.num_test_seeds, self.num_test_seeds + self.num_train_seeds))
             else:
-                random_seed = random.choice(range(self.num_train_seeds, self.num_train_seeds + self.num_test_seeds))  # 1000~1019 evaluation seed
+                random_seed = random.choice(range(self.num_test_seeds))
         return random_seed
 
     def reset(self):
@@ -126,6 +123,23 @@ class DoorKey(MiniGridEnv):
             return 0, 0
         else:
             return 1, 0
+
+
+class MazeRooms_7by7_DoorKey(DoorKey):
+    def __init__(self,
+                 size=7,
+                 max_steps=1024,
+                 train_mode=True,
+                 num_train_seeds=1000,
+                 num_test_seeds=100,
+                 seed=0
+                 ):
+        super().__init__(size=size,
+                         max_steps=max_steps,
+                         train_mode=train_mode,
+                         num_train_seeds=num_train_seeds,
+                         num_test_seeds=num_test_seeds,
+                         seed=seed)
 
 
 class MazeRooms_8by8_DoorKey(DoorKey):

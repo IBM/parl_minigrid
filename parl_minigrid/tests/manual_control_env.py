@@ -78,7 +78,7 @@ parser = argparse.ArgumentParser()
 
 from parl_minigrid.envs import MazeRoom_env_dict
 all_env_names = "\n".join([k for k in MazeRoom_env_dict.keys()])
-parser.add_argument("--env", default="MazeRooms-2by2-v0", help=all_env_names)
+parser.add_argument("--env", default="MazeRooms-8by8-DoorKey-v0", help=all_env_names)
 
 parser.add_argument(
     "--seed",
@@ -124,8 +124,8 @@ if args.standard == 1:
 else:
     parl_minigrid_kwargs = {
         "train_mode": True,
-        "num_train_seeds": 1000,
-        "num_test_seeds": 100
+        "num_train_seeds": 5,
+        "num_test_seeds": 3
     }
     env = gym.make(args.env, **parl_minigrid_kwargs)
 

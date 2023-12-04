@@ -54,7 +54,7 @@ OneKey_3by3_DoorLocked = ((1, 1, 3, 'yellow'), (1, 1, 2, 'yellow'),
                           )
 
 RoomSize8 = 8
-
+RoomSize5 = 5
 
 class MazeRooms_2by2_TwoKeys(MazeRooms):
     def __init__(self,
@@ -70,12 +70,39 @@ class MazeRooms_2by2_TwoKeys(MazeRooms):
                  maze_layout=Default_2by2_layout,
                  key_rooms=TwoKeys_Key_Rooms,
                  key_colors=TwoKeys_Key_Colors,
-                 locked_rooms_and_doors=TwoKeys_LockedRooms
+                 locked_rooms_and_doors=TwoKeys_LockedRooms,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds,num_test_seeds=num_test_seeds,
                          num_keys=num_keys, mission_type=mission_type, maze_layout=maze_layout,
-                         key_rooms=key_rooms, key_colors=key_colors, locked_rooms_and_doors=locked_rooms_and_doors)
+                         key_rooms=key_rooms, key_colors=key_colors, locked_rooms_and_doors=locked_rooms_and_doors,
+                         seed=seed)
+
+
+class MazeRooms_2by2_TwoKeysSmall(MazeRooms):
+    def __init__(self,
+                 room_size=RoomSize5,
+                 num_rows=2,
+                 num_cols=2,
+                 max_steps=1000,
+                 num_keys=2,
+                 train_mode=True,
+                 num_train_seeds=1000,
+                 num_test_seeds=100,
+                 mission_type="two-keys-locked",
+                 maze_layout=Default_2by2_layout,
+                 key_rooms=TwoKeys_Key_Rooms,
+                 key_colors=TwoKeys_Key_Colors,
+                 locked_rooms_and_doors=TwoKeys_LockedRooms,
+                 seed=0
+                 ):
+        super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
+                         train_mode=train_mode, num_train_seeds=num_train_seeds,num_test_seeds=num_test_seeds,
+                         num_keys=num_keys, mission_type=mission_type, maze_layout=maze_layout,
+                         key_rooms=key_rooms, key_colors=key_colors, locked_rooms_and_doors=locked_rooms_and_doors,
+                         seed=seed)
+
 
 
 class MazeRooms_2by2(MazeRooms):
@@ -88,11 +115,12 @@ class MazeRooms_2by2(MazeRooms):
                  num_train_seeds=1000,
                  num_test_seeds=100,
                  mission_type="simple",
-                 maze_layout=Default_2by2_layout
+                 maze_layout=Default_2by2_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, maze_layout=maze_layout)
+                         mission_type=mission_type, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_2by2_Doors(MazeRooms):
@@ -105,11 +133,12 @@ class MazeRooms_2by2_Doors(MazeRooms):
                  num_train_seeds=1000,
                  num_test_seeds=100,
                  mission_type="closed-doors",
-                 maze_layout=Default_2by2_layout
+                 maze_layout=Default_2by2_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, maze_layout=maze_layout)
+                         mission_type=mission_type, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_2by2_Balls(MazeRooms):
@@ -123,11 +152,12 @@ class MazeRooms_2by2_Balls(MazeRooms):
                  num_test_seeds=100,
                  mission_type="distracting-balls",
                  num_balls=4,
-                 maze_layout=Default_2by2_layout
+                 maze_layout=Default_2by2_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, num_balls=num_balls, maze_layout=maze_layout)
+                         mission_type=mission_type, num_balls=num_balls, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_2by2_Locked(MazeRooms):
@@ -145,13 +175,41 @@ class MazeRooms_2by2_Locked(MazeRooms):
                  key_colors=('yellow',),
                  key_rooms=OneKey_Key_Rooms,
                  num_locked_rooms=1,
-                 maze_layout=Default_2by2_layout
+                 maze_layout=Default_2by2_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
                          mission_type=mission_type,
                          num_balls=num_balls, num_keys=num_keys, key_colors=key_colors, key_rooms=key_rooms,
-                         num_locked_rooms=num_locked_rooms, maze_layout=maze_layout)
+                         num_locked_rooms=num_locked_rooms, maze_layout=maze_layout, seed=seed)
+
+
+class MazeRooms_2by2_LockedSmall(MazeRooms):
+    def __init__(self,
+                 room_size=RoomSize5,
+                 num_rows=2,
+                 num_cols=2,
+                 max_steps=1000,
+                 train_mode=True,
+                 num_train_seeds=1000,
+                 num_test_seeds=100,
+                 mission_type="locked-room",
+                 num_balls=4,
+                 num_keys=1,
+                 key_colors=('yellow',),
+                 key_rooms=OneKey_Key_Rooms,
+                 num_locked_rooms=1,
+                 maze_layout=Default_2by2_layout,
+                 multiple_init_rooms=((0, 0), (0, 1)),
+                 seed=0
+                 ):
+        super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
+                         train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
+                         mission_type=mission_type,
+                         num_balls=num_balls, num_keys=num_keys, key_colors=key_colors, key_rooms=key_rooms,
+                         num_locked_rooms=num_locked_rooms, maze_layout=maze_layout,
+                         multiple_init_rooms=multiple_init_rooms, seed=seed)
 
 
 class MazeRooms_3by3_LockedDoors(MazeRooms):
@@ -170,14 +228,15 @@ class MazeRooms_3by3_LockedDoors(MazeRooms):
                  key_rooms=((2, 1), ),
                  num_locked_rooms=2,
                  maze_layout=Default_3by3_layout2,
-                 locked_rooms_and_doors=OneKey_3by3_DoorLocked
+                 locked_rooms_and_doors=OneKey_3by3_DoorLocked,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
                          mission_type=mission_type,
                          num_balls=num_balls, num_keys=num_keys, key_colors=key_colors, key_rooms=key_rooms,
                          num_locked_rooms=num_locked_rooms, maze_layout=maze_layout,
-                         locked_rooms_and_doors=locked_rooms_and_doors)
+                         locked_rooms_and_doors=locked_rooms_and_doors, seed=seed)
 
 
 class MazeRooms_3by3(MazeRooms):
@@ -190,11 +249,12 @@ class MazeRooms_3by3(MazeRooms):
                  num_train_seeds=1000,
                  num_test_seeds=100,
                  mission_type="simple",
-                 maze_layout=Default_3by3_layout
+                 maze_layout=Default_3by3_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, maze_layout=maze_layout)
+                         mission_type=mission_type, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_3by3_Doors(MazeRooms):
@@ -207,11 +267,12 @@ class MazeRooms_3by3_Doors(MazeRooms):
                  num_train_seeds=1000,
                  num_test_seeds=100,
                  mission_type="closed-doors",
-                 maze_layout=Default_3by3_layout
+                 maze_layout=Default_3by3_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, maze_layout=maze_layout)
+                         mission_type=mission_type, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_3by3_Balls(MazeRooms):
@@ -225,11 +286,12 @@ class MazeRooms_3by3_Balls(MazeRooms):
                  num_test_seeds=100,
                  mission_type="distracting-balls",
                  num_balls=9,
-                 maze_layout=Default_3by3_layout
+                 maze_layout=Default_3by3_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, num_balls=num_balls, maze_layout=maze_layout)
+                         mission_type=mission_type, num_balls=num_balls, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_3by3_Locked(MazeRooms):
@@ -247,13 +309,14 @@ class MazeRooms_3by3_Locked(MazeRooms):
                  key_colors=('yellow', 'yellow'),
                  key_rooms=TWoKeys_Key_Rooms_3by3,
                  num_locked_rooms=1,
-                 maze_layout=Default_3by3_layout
+                 maze_layout=Default_3by3_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
                          mission_type=mission_type,
                          num_balls=num_balls, num_keys=num_keys, key_colors=key_colors, key_rooms=key_rooms,
-                         num_locked_rooms=num_locked_rooms, maze_layout=maze_layout)
+                         num_locked_rooms=num_locked_rooms, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_4by4(MazeRooms):
@@ -266,11 +329,12 @@ class MazeRooms_4by4(MazeRooms):
                  num_train_seeds=1000,
                  num_test_seeds=100,
                  mission_type="simple",
-                 maze_layout=Default_4by4_layout
+                 maze_layout=Default_4by4_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, maze_layout=maze_layout)
+                         mission_type=mission_type, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_4by4_Doors(MazeRooms):
@@ -283,11 +347,12 @@ class MazeRooms_4by4_Doors(MazeRooms):
                  num_train_seeds=1000,
                  num_test_seeds=100,
                  mission_type="closed-doors",
-                 maze_layout=Default_4by4_layout
+                 maze_layout=Default_4by4_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, maze_layout=maze_layout)
+                         mission_type=mission_type, maze_layout=maze_layout, seed=seed)
 
 
 class MazeRooms_4by4_Balls(MazeRooms):
@@ -301,11 +366,13 @@ class MazeRooms_4by4_Balls(MazeRooms):
                  num_test_seeds=100,
                  mission_type="distracting-balls",
                  num_balls=16,
-                 maze_layout=Default_4by4_layout
+                 maze_layout=Default_4by4_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
-                         mission_type=mission_type, num_balls=num_balls, maze_layout=maze_layout)
+                         mission_type=mission_type, num_balls=num_balls, maze_layout=maze_layout,
+                         seed=seed)
 
 
 class MazeRooms_4by4_Locked(MazeRooms):
@@ -322,10 +389,14 @@ class MazeRooms_4by4_Locked(MazeRooms):
                  num_keys=4,
                  key_colors=('yellow', 'yellow', 'yellow', 'yellow'),
                  num_locked_rooms=1,
-                 maze_layout=Default_4by4_layout
+                 maze_layout=Default_4by4_layout,
+                 seed=0
                  ):
         super().__init__(room_size=room_size, num_rows=num_rows, num_cols=num_cols, max_steps=max_steps,
                          train_mode=train_mode, num_train_seeds=num_train_seeds, num_test_seeds=num_test_seeds,
                          mission_type=mission_type,
                          num_balls=num_balls, num_keys=num_keys, key_colors=key_colors,
-                         num_locked_rooms=num_locked_rooms, maze_layout=maze_layout)
+                         num_locked_rooms=num_locked_rooms, maze_layout=maze_layout, seed=seed)
+
+
+# register_examples(__name__, globals())

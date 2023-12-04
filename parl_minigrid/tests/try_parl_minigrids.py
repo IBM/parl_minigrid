@@ -5,7 +5,8 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 from parl_minigrid.envs import MazeRoom_env_dict
-from parl_minigrid.annotations.strips.annotated_task import MazeRoomsAnnotatedTask
+from parl_minigrid.annotations.strips.maze_rooms.annotated_task import MazeRoomsAnnotatedTask
+from parl_minigrid.annotations.strips.maze_rooms_disposable_keys.annotated_task import MazeRoomsDisposableKeysAnnotatedTask
 from parl_minigrid.envs.maze_rooms import MazeRooms
 from gym_minigrid.minigrid import MiniGridEnv
 
@@ -17,14 +18,19 @@ parser.add_argument(
     "--seed", type=int, help="random seed to generate the environment with", default=42)
 args = parser.parse_args()
 
-env = gym.make(args.env)
+kwargs = dict(train_mode=True, num_train_seeds=5, num_test_seeds=3)
+env = gym.make(args.env, **kwargs)
 env = gym_minigrid.wrappers.FullyObsWrapper(env)
 env.seed(args.seed)
 
 unwrapped_env = env
 while not isinstance(unwrapped_env, MazeRooms) and not isinstance(unwrapped_env, MiniGridEnv):
     unwrapped_env = unwrapped_env.env
-task = MazeRoomsAnnotatedTask(unwrapped_env)
+
+if "Disposable" in args.env:
+    task = MazeRoomsDisposableKeysAnnotatedTask(unwrapped_env)
+else:
+    task = MazeRoomsAnnotatedTask(unwrapped_env)
 
 
 obs = env.reset()
@@ -41,16 +47,18 @@ while True:
     if cmd == '7':
         print("break!")
         break
+    done = False
     if cmd in ['0', '1', '2', '3', '4', '5', '6']:
-        obs, reward, done, info = env.step(int(cmd))
-        env.render(mode='human', highlight=False)
-        # pp.pprint("----"*10)
-        # pp.pprint("obs:\n{}".format(obs))
-        pp.pprint("----" * 10)
-        pp.pprint("pl:\n{}".format(task.rl_obs_to_pl_state(None)))
-        # pp.pprint("----" * 10)
-        # pp.pprint("info:\n{}".format(info))
-        pp.pprint("----" * 10)
+        if cmd != '6':
+            obs, reward, done, info = env.step(int(cmd))
+            env.render(mode='human', highlight=False)
+            # pp.pprint("----"*10)
+            # pp.pprint("obs:\n{}".format(obs))
+            pp.pprint("----" * 10)
+            pp.pprint("pl:\n{}".format(task.rl_obs_to_pl_state(None)))
+            # pp.pprint("----" * 10)
+            # pp.pprint("info:\n{}".format(info))
+            pp.pprint("----" * 10)
         if done or cmd == '6':
             pp.pprint("----" * 10)
             pp.pprint("reset!")
